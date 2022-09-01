@@ -10,7 +10,7 @@ requests
 ```
 
 # 배포
-Kubernetes 위에서 Cronjob 으로 작동하며, 매일 9 AM 에 Job 을 수행한다.
+Kubernetes 위에서 Cronjob 으로 작동하며, 매일 9 AM 에 Job 을 수행한다.   
 상세한 배포 방법은 아래 [문서](/kustomize/README.md) 를 확인한다.
 
 # Build
