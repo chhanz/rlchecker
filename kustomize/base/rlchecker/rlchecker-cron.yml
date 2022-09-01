@@ -1,0 +1,26 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rlchecker-job
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: localtime
+              hostPath:
+                path: /etc/localtime
+          containers:
+          - name: rlchecker
+            image: docker.io/han0495/rlchecker:latest
+            envFrom:
+              - secretRef:
+                  name: rlchecker-secrets
+            volumeMounts:
+              - name: localtime
+                mountPath: /etc/localtime
+                readOnly: true
+          restartPolicy: OnFailure

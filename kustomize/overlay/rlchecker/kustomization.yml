@@ -1,0 +1,22 @@
+bases:
+- ../../base/rlchecker
+
+namespace: monitoring
+
+patches:
+- path: rlchecker-patch.json
+  target:
+    kind: CronJob
+    name: rlchecker-job
+
+secretGenerator:
+- name: rlchecker-secrets
+  literals:
+    - DB_DATABASE=mariadb
+    - DB_USER=mariadb
+    - DB_PASS=mariadb
+    - DB_HOST=mariadb
+    - SLACK_WEBHOOK=https://hooks.slack.com/services/<api-token>
+    - SLACK_CHANNEL=<slack-channel>
+  options:
+    disableNameSuffixHash: true

@@ -1,0 +1,20 @@
+bases:
+- ../../base/mariadb
+
+namespace: monitoring
+ 
+patches:
+- path: mariadb-patch.json
+  target:
+    kind: PersistentVolumeClaim
+    name: mariadb-pv-claim
+
+secretGenerator:
+- name: mariadb-secrets
+  literals:
+    - MARIADB_DATABASE=mariadb
+    - MARIADB_USER=mariadb
+    - MARIADB_PASSWORD=mariadb
+    - MARIADB_ROOT_PASSWORD=mariadb
+  options:
+    disableNameSuffixHash: true
